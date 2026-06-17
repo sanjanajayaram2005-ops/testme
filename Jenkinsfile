@@ -1,7 +1,7 @@
 pipeline {
   agent any
   tools {
-    gradle 'Gradle'
+    jdk 'jdk'
   }
   stages { 
     stage ('Checkout')
@@ -15,14 +15,22 @@ pipeline {
 {
 steps
 {
- sh 'gradle build'
+ sh 'chmod +x gradlew'
+sh './gradlew build'
+}
+}
+    stage ('Test')
+{
+steps
+{
+sh './gradlew test'
 }
 }
 stage ('Run')
 {
 steps
 {
-sh 'gradle run'
+sh './gradlew run'
 }
 }
 }
